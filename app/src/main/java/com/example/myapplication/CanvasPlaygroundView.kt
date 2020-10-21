@@ -41,8 +41,7 @@ class CanvasPlaygroundView(context: Context?, attr: AttributeSet) : View(context
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
 
-        val inset = 40
-        rect = Rect(inset, inset, width - inset, height - inset)
+        rect = Rect(width/4, height/4, width *3/4, height *3/4)
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -51,7 +50,11 @@ class CanvasPlaygroundView(context: Context?, attr: AttributeSet) : View(context
         canvas?.drawRect(rect, paint)
     }
 
-    public fun AddRectangle() {
+    fun AddRectangle() {
+
+    }
+
+    fun RemoveRectangle() {
 
     }
 }
