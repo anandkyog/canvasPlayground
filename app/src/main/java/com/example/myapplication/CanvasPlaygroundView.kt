@@ -11,7 +11,7 @@ private const val STROKE_WIDTH = 12f
 class CanvasPlaygroundView(context: Context?, attr: AttributeSet) : View(context, attr) {
 
 
-    private lateinit var rect : Rect
+    private var rect : Rect? = null
 
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
@@ -41,20 +41,24 @@ class CanvasPlaygroundView(context: Context?, attr: AttributeSet) : View(context
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
 
-        rect = Rect(width/4, height/4, width *3/4, height *3/4)
+
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
-        canvas?.drawRect(rect, paint)
+        rect?.let {
+            canvas?.drawRect(rect!!, paint)
+        }
     }
 
     fun AddRectangle() {
-
+        rect = Rect(width/4, height/4, width *3/4, height *3/4)
+        invalidate()
     }
 
     fun RemoveRectangle() {
-
+        rect = null
+        invalidate()
     }
 }
